@@ -27,7 +27,7 @@ const ModalFocusAfterClose = (props) => {
     }
 
     return (
-        <div   >
+        <div>
            
             <Button color="danger" onClick={toggle}  style={{ marginTop:"20px", float:"right" , }}>إضافة شركة جديده</Button>
             
