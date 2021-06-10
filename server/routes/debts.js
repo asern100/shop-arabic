@@ -27,12 +27,12 @@ router.put("/debts/:id/installment", async (req, res) => {
         amount: parseFloat(req.body.amount),
         date: new Date().toISOString(),
     }) 
-
+    debt.rest= debt.rest - parseFloat(req.body.amount)
     await shop.save()    
     await debt.save().then( data => res.json(data) ).catch( err => res.json(err) )    
     
  })
- router.put("/debts/:id/nextpromise", async (req, res) => {
+ router.put("/debts/:id/promise", async (req, res) => {
     
     const debt = await Debt.findById(req.params.id);
     debt.promises.push({
