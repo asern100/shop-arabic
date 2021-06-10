@@ -50,4 +50,12 @@ router.get("/debts/", async (req, res) => {
     
 })
 
+router.get("/debts/:id", async (req, res) => {
+    
+    const debts = await Debt.findById(req.params.id)
+      .then( data => res.json(data) ).catch( err => res.json(err) )
+    
+})
+
+
 module.exports = router
