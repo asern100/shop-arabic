@@ -10,6 +10,9 @@ const saleRoutes = require("./routes/sales")
 const clientRoutes = require("./routes/clients")
 const providerRoutes = require("./routes/providers")
 const transfertRoutes = require("./routes/transferts")
+const outlayRoutes = require("./routes/outlays")
+const lossRoutes = require("./routes/losses")
+const debtRoutes = require("./routes/debts")
 const employeeRoutes = require("./routes/employees")
 
 app.use(cors());
@@ -32,6 +35,9 @@ app.use('/api/',saleRoutes)
 app.use('/api/',clientRoutes)
 app.use('/api/',providerRoutes)
 app.use('/api/',transfertRoutes)
+app.use('/api/',outlayRoutes)
+app.use('/api/',lossRoutes)
+app.use('/api/',debtRoutes)
 app.use('/api/',employeeRoutes)
 
 app.listen(3000, () => console.log("Server Up & Running "));

@@ -1,14 +1,14 @@
 import React, {useState,useEffect} from 'react'
 import axios from "axios"
 import { Card,CardHeader,Container,Alert, Row, Col ,FormGroup, Input, Label} from 'reactstrap';
-import AddTransfert from '../components/AddTransfert';
+import AddOutlay from '../components/AddOutlay';
 require('./pages.css')
-function Transfert() {
+function Outlays() {
 
     const [points,setPoints] = useState([]);
     const [employees,setEmployees] = useState([]);
-    const [transferts,setTransferts] = useState([]);
-    const [sp ,setSP] = useState({})
+    const [outlays,setOutlays] = useState([]);
+    
     useEffect(() => {
         axios.get("http://localhost:3000/api/sellpoints/").then(response => {
             setPoints(response.data)
@@ -19,8 +19,8 @@ function Transfert() {
             setEmployees(response.data)
             
         })
-        axios.get("http://localhost:3000/api/transferts/").then(response => {
-            setTransferts(response.data)
+        axios.get("http://localhost:3000/api/outlays/").then(response => {
+            setOutlays(response.data)
             
         })
       
@@ -30,12 +30,12 @@ function Transfert() {
       const postData =(body) => {
         let date = new Date().toISOString()
         
-        axios.post("http://localhost:3000/api/transferts/" ,{date , ...body}).then(response => response.status)
+        axios.post("http://localhost:3000/api/outlays/" ,{date , ...body}).then(response => response.status)
         .then((status) => {   
             if (status === 200) {
                 alert(JSON.stringify({"Mrigel" : "jawwik behi", "status ": status}))
                 
-                setTransferts([ ...transferts, body])
+                setOutlays([ ...outlays, {date , ...body}])
             }
         }).catch(err => alert(err))
       }
@@ -43,29 +43,29 @@ function Transfert() {
 
     return (
         <Container className="cairo">
-            <AddTransfert sellpoints={points} employees={employees} postData={postData} />
+            <AddOutlay sellpoints={points} employees={employees} postData={postData} />
             <Card style={{marginTop:"10px"}}>
                 
                         <CardHeader></CardHeader>
                     <Row className="textCenter ">
+                         <Col xs={2}>أين ؟</Col>
                         <Col xs={2}>ماذا ؟</Col>
                         <Col xs={1}>القيمة</Col>
-                        <Col xs={2}>من أين ؟</Col>
-                        <Col xs={2}>إلى أين ؟</Col>
                         <Col xs={2}>العامل</Col>
                         <Col xs={3}>متى ؟</Col>
                     </Row>
                     <CardHeader></CardHeader>
                    {
-                       transferts.map(trans => 
+                       outlays.map(outlay => 
                         <Row className="textCenter ">
-                            <Col xs={2}>{trans.what}</Col>
-                            <Col xs={1}>{trans.amount}</Col>
-                            {points.map(sp => (trans.from === sp._id ) ? <Col xs={2}>{sp.name}</Col> : null )}
-                            {points.map(sp => (trans.to === sp._id ) ? <Col xs={2}>{sp.name}</Col> : null )}
-                            {employees.map(emp => (trans.employee === emp._id ) ? <Col xs={2}>{emp.name}</Col> : null )}
+                            {points.map(sp => (outlay.sellPointID === sp._id ) ? <Col xs={2}>{sp.name}</Col> : null )}
+                            <Col xs={2}>{outlay.thing}</Col>
+                            <Col xs={1}>{outlay.amount}</Col>
                             
-                            <Col xs={3}>{trans.date.split("T")[0]  } {trans.date.split("T")[1].split(".")[0]}</Col>
+                            
+                            {employees.map(emp => (outlay.employeeID === emp._id ) ? <Col xs={2}>{emp.name}</Col> : null )}
+                            
+                            <Col xs={3}>{outlay.date.split("T")[0]  } {outlay.date.split("T")[1].split(".")[0]}</Col>
                         </Row>
                         )
                    }
@@ -76,4 +76,4 @@ function Transfert() {
     )
 }
 
-export default Transfert
+export default Outlays

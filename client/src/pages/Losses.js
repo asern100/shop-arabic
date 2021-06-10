@@ -1,14 +1,14 @@
 import React, {useState,useEffect} from 'react'
 import axios from "axios"
 import { Card,CardHeader,Container,Alert, Row, Col ,FormGroup, Input, Label} from 'reactstrap';
-import AddTransfert from '../components/AddTransfert';
+import AddLoss from '../components/AddLoss';
 require('./pages.css')
-function Transfert() {
+function Losses() {
 
     const [points,setPoints] = useState([]);
     const [employees,setEmployees] = useState([]);
-    const [transferts,setTransferts] = useState([]);
-    const [sp ,setSP] = useState({})
+    const [losses,setLosses] = useState([]);
+    
     useEffect(() => {
         axios.get("http://localhost:3000/api/sellpoints/").then(response => {
             setPoints(response.data)
@@ -19,8 +19,8 @@ function Transfert() {
             setEmployees(response.data)
             
         })
-        axios.get("http://localhost:3000/api/transferts/").then(response => {
-            setTransferts(response.data)
+        axios.get("http://localhost:3000/api/losses/").then(response => {
+            setLosses(response.data)
             
         })
       
@@ -30,12 +30,12 @@ function Transfert() {
       const postData =(body) => {
         let date = new Date().toISOString()
         
-        axios.post("http://localhost:3000/api/transferts/" ,{date , ...body}).then(response => response.status)
+        axios.post("http://localhost:3000/api/losses/" ,{date , ...body}).then(response => response.status)
         .then((status) => {   
             if (status === 200) {
                 alert(JSON.stringify({"Mrigel" : "jawwik behi", "status ": status}))
                 
-                setTransferts([ ...transferts, body])
+                setLosses([ ...losses, {date , ...body}])
             }
         }).catch(err => alert(err))
       }
@@ -43,29 +43,31 @@ function Transfert() {
 
     return (
         <Container className="cairo">
-            <AddTransfert sellpoints={points} employees={employees} postData={postData} />
+            <AddLoss sellpoints={points} employees={employees} postData={postData} />
             <Card style={{marginTop:"10px"}}>
                 
                         <CardHeader></CardHeader>
                     <Row className="textCenter ">
+                         
+                         
                         <Col xs={2}>ماذا ؟</Col>
+                        <Col xs={3}>التفاصيل</Col>
                         <Col xs={1}>القيمة</Col>
-                        <Col xs={2}>من أين ؟</Col>
-                        <Col xs={2}>إلى أين ؟</Col>
-                        <Col xs={2}>العامل</Col>
+                        <Col xs={2}>العامل المسؤول</Col>
+                        <Col xs={1}>أين ؟</Col>
                         <Col xs={3}>متى ؟</Col>
                     </Row>
                     <CardHeader></CardHeader>
                    {
-                       transferts.map(trans => 
+                       losses.map(loss => 
                         <Row className="textCenter ">
-                            <Col xs={2}>{trans.what}</Col>
-                            <Col xs={1}>{trans.amount}</Col>
-                            {points.map(sp => (trans.from === sp._id ) ? <Col xs={2}>{sp.name}</Col> : null )}
-                            {points.map(sp => (trans.to === sp._id ) ? <Col xs={2}>{sp.name}</Col> : null )}
-                            {employees.map(emp => (trans.employee === emp._id ) ? <Col xs={2}>{emp.name}</Col> : null )}
                             
-                            <Col xs={3}>{trans.date.split("T")[0]  } {trans.date.split("T")[1].split(".")[0]}</Col>
+                            <Col xs={2}>{loss.thing}</Col>
+                            <Col xs={3}>{loss.note}</Col>
+                            <Col xs={1}>{loss.amount}</Col>
+                            {employees.map(emp => (loss.employeeID === emp._id ) ? <Col xs={2}>{emp.name}</Col> : null )}
+                            {points.map(sp => (loss.sellPointID === sp._id ) ? <Col xs={1}>{sp.name}</Col> : null )}
+                            <Col xs={3}>{loss.date.split("T")[0]  } {loss.date.split("T")[1].split(".")[0]}</Col>
                         </Row>
                         )
                    }
@@ -76,4 +78,4 @@ function Transfert() {
     )
 }
 
-export default Transfert
+export default Losses

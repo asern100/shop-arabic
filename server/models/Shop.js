@@ -6,6 +6,7 @@ const shopSchema = new Schema({
     achat: Number, 
     gain: Number,
     restachat: Number,
+    debts: Number,
      
 })
 

@@ -13,6 +13,9 @@ import Employees from './pages/Employees';
 import Sales from './pages/Sales';
 import Shops from './pages/Shops';
 import Transfert from './pages/Transfert';
+import Outlays from './pages/Outlays';
+import Losses from './pages/Losses';
+import Debts from './pages/Debts';
 
 function App() {
   return (
@@ -30,6 +33,9 @@ function App() {
           <Route path='/employees' component={Employees} />
           <Route path='/sales' component={Sales} />
           <Route path='/transfert' component={Transfert} />
+          <Route path='/outlays' component={Outlays} />
+          <Route path='/losses' component={Losses} />
+          <Route path='/debts' component={Debts} />
         </Switch>
       </Router>
     </>

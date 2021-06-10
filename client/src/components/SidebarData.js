@@ -36,19 +36,19 @@ export const SidebarData = [
   },
   {
     title: 'المصاريف',
-    path: '/transfert',
+    path: '/outlays',
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
   },
   {
     title: 'الخسائر',
-    path: '/transfert',
+    path: '/losses',
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
   },
   {
     title: 'الديون',
-    path: '/transfert',
+    path: '/debts',
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
   },
