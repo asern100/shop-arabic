@@ -4,6 +4,7 @@ import { Card,CardHeader,Container,Alert, Row, Col ,FormGroup, Input, Label} fro
 import AddDebt from '../components/AddDebt';
 import DebtPromise from '../components/DebtPromise';
 import NewInstallment from '../components/NewInstallment';
+import DebtDetails from '../components/DebtDetails';
 
 require('./pages.css')
 function Losses() {
@@ -78,25 +79,31 @@ function Losses() {
             </FormGroup>
             </Row>
             <Row>
-             {(idSelected) ? <AddDebt idSelected={idSelected} postData={postData} /> : <Alert color="warning">حدّد الشركة</Alert> }
+             {(idSelected) ? <AddDebt idSelected={idSelected} postData={postData} /> : <Alert color="warning">لإضافة دين جديد حدد الشركة</Alert> }
             </Row>
             <Card style={{marginTop:"10px"}}>
                 
                 <Row className="textCenter ">
                     <Col md={2} xs={2}>الشركه</Col>
                     <Col md={2} xs={2}>صاحب الدين</Col>
-                    <Col md={2} xs={2}>تفاصيل</Col>
-                    <Col md={2} xs={2}>كم ؟</Col>
-                    <Col md={2} xs={2}>الباقي</Col>
+                    <Col md={2} xs={2}>ملاحظه</Col>
+                    <Col md={1} xs={1}>المبلغ</Col>
+                    <Col md={1} xs={1}>دفع منه</Col>
+                    <Col md={1} xs={1}>الباقي</Col>
+                    <Col md={1} xs={1}>التفاصيل</Col>
                 </Row>
             <CardHeader></CardHeader>
             {debts.map(debt => 
                 <Row className="textCenter">
                     {shops.map(shop => (debt.shopID === shop._id ) ? <Col md={2}  xs={2}>{shop.name}</Col> : null )}
                     <Col md={2} xs={2}>{debt.who}</Col>
-                    <Col md={2} xs={2}>{debt.note}</Col>
-                    <Col md={2} xs={2}>{debt.amount}</Col>
-                    <Col md={2} xs={2}>{debt.rest}</Col>
+                    <Col md={2} xs={2} style={{"fontSize":12}}>{debt.note}</Col>
+                    <Col md={1} xs={1}>{debt.amount}</Col>
+                    <Col md={1} xs={1}>{debt.amount-debt.rest}</Col>
+                    <Col md={1} xs={1}>{debt.rest}</Col>
+                    <Col md={1} xs={1}>
+                    <DebtDetails id={debt._id}/>
+                    </Col>
                     <Col md={2} xs={2}> 
                         <Row>
                             <Col><DebtPromise debtPromise={debtPromise} id={debt._id}/></Col>

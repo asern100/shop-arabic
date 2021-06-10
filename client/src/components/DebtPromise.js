@@ -42,7 +42,7 @@ const DebtPromise = (props) => {
                 <ModalBody style={{'direction':'rtl', 'textAlign': 'right'}}>
                <Row>
                 <Col>
-                حدد الموعد
+                حدد الموعد 
                 </Col>
                 <Col>
                 <DatePicker
