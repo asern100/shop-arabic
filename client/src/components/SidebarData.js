@@ -29,6 +29,12 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
+    title: 'البيوع المؤجلّه',
+    path: '/deposits',
+    icon: <IoIcons.IoIosPaper />,
+    cName: 'nav-text'
+  },
+  {
     title: 'المبادلات',
     path: '/transfert',
     icon: <IoIcons.IoIosPaper />,

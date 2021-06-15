@@ -43,6 +43,8 @@ function Shops() {
                             <br/> 
                             المبيعات : <span style={{fontWeight:"bold"}}>{shop.vente} </span > 
                             <br />
+                            الديون : <span style={{fontWeight:"bold"}}>{shop.debts} </span > 
+                            <br />
                             الأرباح : <span style={{fontWeight:"bold"}}>  {shop.gain} </span >  
                             </CardBody>
                         </Card>

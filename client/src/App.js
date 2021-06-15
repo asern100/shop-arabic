@@ -11,6 +11,7 @@ import Providers from './pages/Providers';
 import Clients from './pages/Clients';
 import Employees from './pages/Employees';
 import Sales from './pages/Sales';
+import Deposits from './pages/Deposits';
 import Shops from './pages/Shops';
 import Transfert from './pages/Transfert';
 import Outlays from './pages/Outlays';
@@ -32,6 +33,7 @@ function App() {
           <Route path='/clients' component={Clients} />
           <Route path='/employees' component={Employees} />
           <Route path='/sales' component={Sales} />
+          <Route path='/deposits' component={Deposits} />
           <Route path='/transfert' component={Transfert} />
           <Route path='/outlays' component={Outlays} />
           <Route path='/losses' component={Losses} />

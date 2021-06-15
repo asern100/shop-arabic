@@ -26,7 +26,7 @@ router.put("/debts/:id/installment", async (req, res) => {
     debt.installments.push({
         amount: parseFloat(req.body.amount),
         date: new Date().toISOString(),
-    }) 
+    })
     debt.rest= debt.rest - parseFloat(req.body.amount)
     await shop.save()    
     await debt.save().then( data => res.json(data) ).catch( err => res.json(err) )    
