@@ -57,11 +57,42 @@ function Sales() {
             <Row>
              {(idSelected) ? <AddDeposit idSelected={idSelected} postData={postData} /> : <Alert color="warning">حدّد نقطة البيع</Alert> }
             </Row>
+            
+
             <Card>
                 
-            
-            </Card>
-            
+            <CardHeader></CardHeader>
+        <Row className="textCenter "  style={{'fontSize':10}}>
+            <Col xs={1}>نقطة البيع</Col>
+            <Col  xs={1}>الزبون</Col>
+            <Col  xs={1}>الهاتف</Col>
+            <Col  xs={1}>الكميه</Col>
+            <Col  xs={1}>إشترى</Col>
+            <Col  xs={1}>التكلفة</Col>
+            <Col  xs={1}>المبلغ</Col>
+            <Col  xs={1}>العربون</Col>
+            <Col  xs={1}>الباقي</Col>
+            <Col  xs={1}>تاريخ التسبقه</Col>
+            <Col  xs={1}>تاريخ التسليم</Col>
+        </Row>
+        <CardHeader></CardHeader>
+        {deposits.map(deposit => 
+            <Row className="textCenter" style={{'fontSize':10}}>
+                {points.map(point => (deposit.sellPointID === point._id ) ? <Col xs={1}>{point.name}</Col> : null )}
+                <Col  xs={1}>{deposit.client}</Col>
+                <Col  xs={1}>{deposit.phone}</Col>
+                <Col  xs={1}>{deposit.quantity}</Col>
+                <Col  xs={1}>{deposit.product}</Col>
+                <Col  xs={1}>{deposit.whatCost}</Col>
+                <Col  xs={1}>{deposit.amount}</Col>
+                <Col  xs={1}>{deposit.asDeposit}</Col>
+                <Col  xs={1}>{deposit.rest}</Col>
+                <Col  xs={1}>{deposit.date.split("T")[0]}</Col>
+                <Col  xs={1}>{deposit.dateFor.split("T")[0]}</Col>
+            </Row>
+            )}
+            <CardHeader></CardHeader>
+</Card>
         </Container>
     )
 }

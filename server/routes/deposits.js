@@ -7,7 +7,7 @@ const Shop = require('../models/Shop');
 router.put("/deposits/",async (req, res) => {
 
     const newDeposit = new Deposit({
-        'date': new Date(),
+        'date': new Date().toISOString(),
         'rest': parseFloat(req.body.amount) - parseFloat(req.body.asDeposit),
         'state':false,
         ...req.body

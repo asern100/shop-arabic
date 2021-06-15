@@ -6,6 +6,7 @@ const saleSchema = new Schema({
     product: String,
     whatCost: Number,
     amount: Number,
+    date:String,
 })
 
 module.exports = model('Sale', saleSchema);

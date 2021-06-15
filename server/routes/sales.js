@@ -6,7 +6,10 @@ const Shop = require('../models/Shop');
 
 router.put("/sales/",async (req, res) => {
 
-    const newSale = new Sale(req.body);
+    const newSale = new Sale({
+        ...req.body,
+        'date':new Date().toISOString()
+    });
     const sellpoint = await  SellPoint.findById(req.body.sellPointID);
     const shop = await Shop.findById(sellpoint.shopID);
     let amount = parseFloat(req.body.amount)

@@ -42,10 +42,11 @@ function Shops() {
                             المصاريف :  <span style={{fontWeight:"bold"}}> {shop.achat} </span > 
                             <br/> 
                             المبيعات : <span style={{fontWeight:"bold"}}>{shop.vente} </span > 
-                            <br />
-                            الديون : <span style={{fontWeight:"bold"}}>{shop.debts} </span > 
+                           
                             <br />
                             الأرباح : <span style={{fontWeight:"bold"}}>  {shop.gain} </span >  
+                            <br />
+                            الديون : <span style={{fontWeight:"bold"}}>{shop.debts} </span > 
                             </CardBody>
                         </Card>
                         <br />

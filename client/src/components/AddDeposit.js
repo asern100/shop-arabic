@@ -14,7 +14,7 @@ const AddDeposit = (props) => {
     const handleChange = event => {
         
         setValues({
-            'dateFor': dateFor,
+            
             ...values,
             [event.target.name]: event.target.value,
             
@@ -22,10 +22,13 @@ const AddDeposit = (props) => {
 
     };
     const submitValue = async () => {
-        //alert(JSON.stringify({ sellPointID ,...values}))
+        alert(JSON.stringify({ sellPointID ,...values}))
        
             
-         let body= { sellPointID ,...values}
+         let body= { 
+            sellPointID ,
+            dateFor,
+            ...values}
           postData(body)
     }
 
